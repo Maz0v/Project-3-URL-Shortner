@@ -96,7 +96,7 @@ const redirectToLongUrl=async function(req,res){
     if(cachedUrlData){
         const parseLongUrl=JSON.parse(cachedUrlData)
         
-        res.status(302).redirect(parseLongUrl.longUrl)
+       return res.status(302).redirect(parseLongUrl.longUrl)
     }
     else{
         const findUrl=await urlModel.findOne({urlCode:urlCode})
@@ -108,7 +108,7 @@ const redirectToLongUrl=async function(req,res){
             // when valid we perform a redirect
             res.status(302).redirect(findUrl.longUrl)
             //setting or storing data  in cache
-            await SET_ASYNC(`${urlCode}`, JSON.stringify(findUrl))
+            await SET_ASYNC(`${urlCode}`, JSON.stringify(findUrl)).select({_id:0})
             }
         }
     }
