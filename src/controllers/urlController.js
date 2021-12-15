@@ -56,7 +56,7 @@ const generateUrl = async function (req, res) {
     }
     try {
         let myUrl=longUrl.trim().split(' ').join('')
-            let url = await urlModel.findOne({ longUrl:myUrl }).select({ longUrl: 1, shortUrl: 1, urlCode: 1 })
+            let url = await urlModel.findOne({ longUrl:myUrl }).select({ longUrl: 1, shortUrl: 1, urlCode: 1, _id:0 })
             if (url) {
                 res.status(200).send({ status: true, data: url })
                 }
