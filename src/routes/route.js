@@ -2,13 +2,13 @@ const express = require('express');
 
 const router = express.Router();
 
-const urlController = require('../controllers/urlController');
+const bookController = require('../controllers/bookController');
 
 
 
 
-router.post('/url/shorten', urlController.generateUrl);
-router.get('/:urlCode', urlController.redirectToLongUrl);
+router.post('/books', bookController.createBooks);
+router.get('/books/:bookId', bookController.getBooks);
 
 
 
